@@ -11,13 +11,19 @@ A modern dashboard combining live crypto prices, weather data, and crypto news w
 - WebSocket
 
 ## Features
-- Real-time weather for 3 cities
-- Crypto-related news
-- Notification toasts
-- Detail pages for each city and crypto
-- Responsive design
+- **Real-time Weather:** Live weather data for 3 cities (e.g., New York, London, Tokyo).
+- **Crypto Prices:** Display live prices, market changes, and details for at least 3 cryptocurrencies (e.g., Bitcoin, Ethereum, and one more).
+- **Crypto News:** Real-time news headlines related to cryptocurrency.
+- **Real-Time Notifications:** WebSocket notifications for significant price shifts and simulated weather alerts.
+- **Detail Pages:** In-depth pages for each city and cryptocurrency.
+- **Responsive Design:** Fully responsive, adapting to mobile, tablet, and desktop devices.
 
 ## Setup
 ```bash
-npm install
-npm run dev
+    npm install
+    npm run dev
+```
+
+
+## Deployment
+- Deployed on Vercel
