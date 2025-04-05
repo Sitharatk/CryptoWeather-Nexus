@@ -1,7 +1,8 @@
 // pages/index.js
 import React from 'react';
 import Navbar from '../components/Navbar';
-import Home from '../components/Home'; // Import the Home component
+import Home from '../components/Home'; 
+import WebSocketManager from '../components/WebSocketManager'; 
 
 const Dashboard = () => {
   return (
@@ -9,6 +10,7 @@ const Dashboard = () => {
       <Navbar />
         
       <Home/>
+      <WebSocketManager />
     </div>
   );
 };

@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-    
+        
         <main className="container mx-auto px-4 py-8">
           <Component {...pageProps} />
         </main>
