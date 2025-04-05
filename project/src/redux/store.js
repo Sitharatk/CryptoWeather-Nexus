@@ -1,6 +1,6 @@
 // redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import weatherReducer from './slices/weatherSlice';
+import weatherReducer from '../redux/slices/weatherSlice.js';
 
 
 export const store = configureStore({
