@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const COINS = ['bitcoin', 'ethereum', 'dogecoin'];
-const RATE_LIMIT_DELAY = 1000; // 1 second delay between requests
+const RATE_LIMIT_DELAY = 1000; 
 
 const fetchWithRetry = async (url, retries = 3, delay = RATE_LIMIT_DELAY) => {
   for (let i = 0; i < retries; i++) {
     try {
-      await new Promise(resolve => setTimeout(resolve, delay * i)); // Exponential backoff
+      await new Promise(resolve => setTimeout(resolve, delay * i)); 
       const response = await axios.get(url);
       return response.data;
     } catch (error) {

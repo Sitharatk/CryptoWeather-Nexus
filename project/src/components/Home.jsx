@@ -4,23 +4,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchWeatherData } from '../redux/slices/weatherSlice.js';
 import { fetchCryptoData } from '../redux/slices/cryptoSlice.js';
 import { Cloud, TrendingUp, Newspaper, Star } from 'lucide-react';
-import { useRouter } from 'next/router'; // <-- Import useRouter
+import { useRouter } from 'next/router'; 
+import { fetchNewsData } from '../redux/slices/newsSlice.js';
 
 const Home = () => {
   const dispatch = useDispatch();
   const weather = useSelector((state) => state.weather);
   const crypto = useSelector((state) => state.crypto);
-  const router = useRouter(); // <-- Initialize router
+  const news = useSelector((state) => state.news);
+  const router = useRouter(); 
 
   useEffect(() => {
     dispatch(fetchWeatherData());
     dispatch(fetchCryptoData());
-
+    dispatch(fetchNewsData());
 
     const interval = setInterval(() => {
       dispatch(fetchWeatherData());
       dispatch(fetchCryptoData());
-    
+      dispatch(fetchNewsData());
     }, 60000);
 
     return () => clearInterval(interval);
@@ -111,6 +113,40 @@ const Home = () => {
         ) : (
           renderCryptoSection(crypto.data)
         )}
+      </section>
+
+      <section>
+        <div className="flex items-center mb-4">
+          <Newspaper className="h-6 w-6 mr-2 text-purple-400" />
+          <h2 className="text-2xl font-bold">Latest News</h2>
+        </div>
+        <div className="bg-gray-800 rounded-lg divide-y divide-gray-700">
+          {news.status === 'loading' ? (
+            <div className="text-center py-8">
+              <p className="text-gray-400">Loading news...</p>
+            </div>
+          ) : news.error ? (
+            <div className="text-center py-8">
+              <p className="text-red-400">{news.error}</p>
+            </div>
+          ) : (
+            news.articles.slice(0, 5).map((article, index) => (
+              <article key={index} className="p-4 hover:bg-gray-700 transition">
+                <h3 className="font-semibold mb-2">
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-400"
+                  >
+                    {article.title}
+                  </a>
+                </h3>
+                <p className="text-gray-400 text-sm">{article.description}</p>
+              </article>
+            ))
+          )}
+        </div>
       </section>
     </div>
   );
