@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ArrowLeft, Heart, Cloud, Droplets, Wind, Thermometer, Sun } from 'lucide-react';
 import { format } from 'date-fns';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-// import { toggleCityFavorite } from '../../store/slices/favoritesSlice';
+import { toggleCityFavorite } from '../../redux/slices/favouritesSlice.js';
 import { fetchCityForecast } from '../../redux/slices/weatherSlice.js';
 
 const CityDetails = () => {
@@ -17,9 +17,9 @@ const CityDetails = () => {
   const forecast = useSelector((state) => state.weather.forecasts[id] || []);
   const forecastStatus = useSelector((state) => state.weather.forecastStatus);
   const forecastError = useSelector((state) => state.weather.forecastError);
-  // const isFavorite = useSelector((state) => 
-  //   state.favorites.cities.includes(id)
-  // );
+  const isFavorite = useSelector((state) => 
+    state.favorites.cities.includes(id)
+  );
 
   useEffect(() => {
     if (id) {
@@ -49,7 +49,7 @@ const CityDetails = () => {
   }));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       <div className="flex items-center justify-between">
         <button
           onClick={() => router.push('/')}
@@ -58,12 +58,12 @@ const CityDetails = () => {
           <ArrowLeft className="h-5 w-5 mr-2" />
           Back to Dashboard
         </button>
-        {/* <button
+        <button
           onClick={() => dispatch(toggleCityFavorite(id))}
           className={`p-2 rounded-full transition ${isFavorite ? 'text-red-400 hover:text-red-300' : 'text-gray-400 hover:text-white'}`}
         >
           <Heart className="h-6 w-6" fill={isFavorite ? 'currentColor' : 'none'} />
-        </button> */}
+        </button>
       </div>
 
       <div className="bg-gray-800 rounded-lg p-6">

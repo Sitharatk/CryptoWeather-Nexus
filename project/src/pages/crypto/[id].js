@@ -1,12 +1,11 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'; // Import from 'next/router' instead of 'next/navigation'
 import { useSelector, useDispatch } from 'react-redux';
-import { ArrowLeft, TrendingUp, DollarSign, BarChart3, Clock, Percent } from 'lucide-react';
+import { ArrowLeft, TrendingUp, DollarSign, BarChart3, Heart,Clock, Percent } from 'lucide-react';
 import { format } from 'date-fns';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Area, AreaChart } from 'recharts';
-
+import { toggleCityFavorite } from '../../redux/slices/favouritesSlice.js';
 import { fetchCryptoHistory } from '../../redux/slices/cryptoSlice.js';
 
 const INTERVALS = [
@@ -29,6 +28,9 @@ const CryptoDetails = () => {
   const history = useSelector((state) => state.crypto.history[id] || []);
   const historyStatus = useSelector((state) => state.crypto.historyStatus);
   const historyError = useSelector((state) => state.crypto.historyError);
+  const isFavorite = useSelector((state) => 
+    state.favorites.cryptos.includes(id)
+  );
 
   useEffect(() => {
     if (id) {
@@ -71,7 +73,7 @@ const CryptoDetails = () => {
     priceChange >= 0 ? 'text-green-400' : 'text-red-400';
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       <div className="flex items-center justify-between">
         <button
           onClick={() => router.push('/')}
@@ -79,6 +81,14 @@ const CryptoDetails = () => {
         >
           <ArrowLeft className="h-5 w-5 mr-2" />
           Back to Dashboard
+        </button>
+        <button
+          onClick={() => dispatch(toggleCryptoFavorite(id))}
+          className={`p-2 rounded-full transition ${
+            isFavorite ? 'text-red-400 hover:text-red-300' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          <Heart className="h-6 w-6" fill={isFavorite ? 'currentColor' : 'none'} />
         </button>
       </div>
 
