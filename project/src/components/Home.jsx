@@ -42,7 +42,7 @@ const Home = () => {
       {cities.map((city) => (
         <div
           key={city.id}
-          className="bg-gray-800 p-6 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors"
+          className="bg-gray-800 p-6 rounded-lg cursor-pointer hover:bg-gray-600 transition-colors"
           onClick={() => navigateToCityDetails(city.id)}
         >
           <h3 className="text-xl font-semibold mb-2">{city.name}</h3>
@@ -61,7 +61,7 @@ const Home = () => {
       {coins.map((coin) => (
         <div
           key={coin.id}
-          className="bg-gray-800 p-6 rounded-lg cursor-pointer hover:bg-gray-700 transition relative"
+          className="bg-gray-800 p-6 rounded-lg cursor-pointer hover:bg-gray-600 transition relative"
           onClick={() => navigateToCryptoDetails(coin.id)}
         >
          

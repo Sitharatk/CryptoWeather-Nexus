@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { updateCryptoPrice } from '../redux/slices/cryptoSlice.js';
@@ -6,21 +6,38 @@ import { updateWeatherAlert } from '../redux/slices/weatherSlice.js';
 
 const WebSocketManager = () => {
   const dispatch = useDispatch();
+  const activeNotificationsRef = useRef(0);
 
   useEffect(() => {
     let ws;
     let reconnectAttempts = 0;
+    const maxNotifications = 3;
     const maxReconnectAttempts = 5;
-    const reconnectDelay = 5000; 
+    const reconnectDelay = 5000;
 
+    // Function to show toast only if under the limit
+    const showLimitedToast = (message, options = {}) => {
+      if (activeNotificationsRef.current < maxNotifications) {
+        activeNotificationsRef.current += 1;
+        return toast(message, {
+          ...options,
+          onClose: () => {
+            activeNotificationsRef.current -= 1;
+            if (options.onClose) options.onClose();
+          }
+        });
+      }
+      return null;
+    };
+    
     const connectWebSocket = () => {
       ws = new WebSocket('wss://ws.coincap.io/prices?assets=bitcoin,ethereum,dogecoin');
-
+      
       ws.onopen = () => {
         console.log('WebSocket connected');
-        reconnectAttempts = 0; 
+        reconnectAttempts = 0;
       };
-
+      
       ws.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data);
@@ -29,14 +46,14 @@ const WebSocketManager = () => {
             
             const priceChange = Math.abs(parseFloat(price));
             if (priceChange > 5) {
-              toast(`${crypto.toUpperCase()} price changed by ${priceChange.toFixed(2)}%!`);
+              showLimitedToast(`${crypto.toUpperCase()} price changed by ${priceChange.toFixed(2)}%!`);
             }
           });
         } catch (error) {
           console.error('Error processing WebSocket message:', error);
         }
       };
-
+      
       ws.onclose = () => {
         console.log('WebSocket disconnected');
         if (reconnectAttempts < maxReconnectAttempts) {
@@ -46,14 +63,13 @@ const WebSocketManager = () => {
           }, reconnectDelay);
         }
       };
-
+      
       ws.onerror = (error) => {
         console.error('WebSocket error:', error);
       };
     };
-
+    
     connectWebSocket();
-
     
     const weatherAlertInterval = setInterval(() => {
       const cities = [
@@ -80,11 +96,11 @@ const WebSocketManager = () => {
       };
       
       dispatch(updateWeatherAlert(alert));
-      toast(`${randomAlert.icon} Weather Alert: ${randomAlert.type} in ${randomCity.name}`, {
+      showLimitedToast(` Weather Alert: ${randomAlert.type} in ${randomCity.name}`, {
         duration: 5000,
       });
     }, 300000);
-
+    
     return () => {
       if (ws) {
         ws.close();
@@ -92,7 +108,7 @@ const WebSocketManager = () => {
       clearInterval(weatherAlertInterval);
     };
   }, [dispatch]);
-
+  
   return null;
 };
 

@@ -16,11 +16,7 @@
             </Link>
   
             <div className="flex space-x-4">
-              {/* <ul className="flex space-x-4">
-//             <li><a href="/" className="text-white">Home</a></li>
-//             <li><a href="/city" className="text-white">City</a></li>
-//             <li><a href="/crypto" className="text-white">Crypto</a></li>
-//           </ul> */}
+          
             </div>
           </div>
         </div>

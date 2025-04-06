@@ -4,7 +4,6 @@ import { store } from '../redux/store.js';  // Updated import path
 import { Toaster } from 'react-hot-toast';
 import '../styles/globals.css'; // Ensure you have a global CSS file for Tailwind CSS
 
- // Updated import path
 
 function MyApp({ Component, pageProps }) {
   return (
