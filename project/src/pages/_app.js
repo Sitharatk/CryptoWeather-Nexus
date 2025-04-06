@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
         <main className="container mx-auto px-4 py-8">
           <Component {...pageProps} />
         </main>
-        <Toaster position="top-right" />
+        <Toaster position="top-center" />
       </div>
     </Provider>
   );

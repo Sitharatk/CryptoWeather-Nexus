@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ArrowLeft, TrendingUp, DollarSign, BarChart3, Heart,Clock, Percent } from 'lucide-react';
 import { format } from 'date-fns';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Area, AreaChart } from 'recharts';
-import { toggleCityFavorite } from '../../redux/slices/favouritesSlice.js';
+import {toggleCryptoFavorite } from '../../redux/slices/favouritesSlice.js';
 import { fetchCryptoHistory } from '../../redux/slices/cryptoSlice.js';
 
 const INTERVALS = [
