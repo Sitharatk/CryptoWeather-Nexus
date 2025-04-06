@@ -44,6 +44,8 @@ A modern dashboard combining live crypto prices, weather data, and crypto news w
 
 ## Setup
 ```bash
+   git clone https://github.com/Sitharak/CryptoWeather-Nexus.git
+    
     npm install
     npm run dev
 ```
