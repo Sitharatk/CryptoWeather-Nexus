@@ -10,6 +10,8 @@ A modern dashboard combining live crypto prices, weather data, and crypto news w
 - Tailwind CSS
 - WebSocket
 - Recharts
+- React Hot Toast
+
 
 ## Features
 - **Real-time Weather:** Live weather data for 3 cities (New York, London, Tokyo).
