@@ -18,7 +18,7 @@ A modern dashboard combining live crypto prices, weather data, and crypto news w
 - **Real-Time Notifications:** WebSocket notifications for significant price shifts and simulated weather alerts.
 - **Detail Pages:** In-depth pages for each city and cryptocurrency.
 - **Responsive Design:** Fully responsive, adapting to mobile, tablet, and desktop devices.
--  **User Features:**  avorite cities and cryptocurrencies, Real-time notifications for significant changes
+-  **User Features:**  favorite cities and cryptocurrencies, Real-time notifications for significant changes
 
 ## APIs Used
 
