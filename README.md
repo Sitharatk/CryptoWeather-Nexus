@@ -9,10 +9,11 @@ A modern dashboard combining live crypto prices, weather data, and crypto news w
 - React
 - Tailwind CSS
 - WebSocket
+- Recharts
 
 ## Features
-- **Real-time Weather:** Live weather data for 3 cities (e.g., New York, London, Tokyo).
-- **Live Cryptocurrency Tracking:** Display live prices, market changes, and details for at least 3 cryptocurrencies (e.g., Bitcoin, Ethereum, and one more).
+- **Real-time Weather:** Live weather data for 3 cities (New York, London, Tokyo).
+- **Live Cryptocurrency Tracking:** Display live prices, market changes, and details for  3 cryptocurrencies (Bitcoin, Ethereum, and Dogecoin).
 - **Crypto News:** Real-time news headlines related to cryptocurrency.
 - **Real-Time Notifications:** WebSocket notifications for significant price shifts and simulated weather alerts.
 - **Detail Pages:** In-depth pages for each city and cryptocurrency.
