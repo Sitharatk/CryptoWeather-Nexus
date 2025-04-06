@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchWeatherData } from '../redux/slices/weatherSlice.js';
 import { fetchCryptoData } from '../redux/slices/cryptoSlice.js';
-import { Cloud, TrendingUp, Newspaper, Star } from 'lucide-react';
+import { Cloud, TrendingUp, Newspaper } from 'lucide-react';
 import { useRouter } from 'next/router'; 
 import { fetchNewsData } from '../redux/slices/newsSlice.js';
 
@@ -86,7 +86,7 @@ const Home = () => {
       <section>
         <div className="flex items-center mb-4">
           <Cloud className="h-6 w-6 mr-2 text-blue-400" />
-          <h2 className="text-2xl font-bold">Weather Overview</h2>
+          <h2 className="text-xl font-bold">Weather Overview</h2>
         </div>
         {weather.status === 'loading' ? (
           <p className="text-gray-400">Loading weather data...</p>
@@ -100,7 +100,7 @@ const Home = () => {
       <section>
         <div className="flex items-center mb-4">
           <TrendingUp className="h-6 w-6 mr-2 text-yellow-400" />
-          <h2 className="text-2xl font-bold">Crypto Markets</h2>
+          <h2 className="text-xl font-bold">Crypto Markets</h2>
         </div>
         {crypto.status === 'loading' ? (
           <div className="text-center py-8">
@@ -118,7 +118,7 @@ const Home = () => {
       <section>
         <div className="flex items-center mb-4">
           <Newspaper className="h-6 w-6 mr-2 text-purple-400" />
-          <h2 className="text-2xl font-bold">Latest News</h2>
+          <h2 className="text-xl font-bold">Latest News</h2>
         </div>
         <div className="bg-gray-800 rounded-lg divide-y divide-gray-700">
           {news.status === 'loading' ? (
